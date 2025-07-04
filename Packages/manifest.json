@@ -1,6 +1,9 @@
 {
   "dependencies": {
-    "com.boxqkrtm.ide.cursor": "https://github.com/boxqkrtm/com.unity.ide.cursor.git",
+    "jillejr.newtonsoft.json-for-unity.converters": "https://github.com/jilleJr/Newtonsoft.Json-for-Unity.Converters.git#1.6.3",
+    "com.unity.nuget.newtonsoft-json": "3.2.1",
+    "com.luca3317.tmpeffects": "https://github.com/Luca3317/TMPEffects.git?path=/Package",
+    "com.unity.2d.sprite": "1.0.0",
     "com.unity.ai.navigation": "2.0.7",
     "com.unity.cinemachine": "3.1.3",
     "com.unity.collab-proxy": "2.8.2",

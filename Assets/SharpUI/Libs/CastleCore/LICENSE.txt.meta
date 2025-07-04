@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ed47f68a5afc34caf8c94b94dcd91e88
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 195933
+  packageName: SharpUI GUI
+  packageVersion: 1.0
+  assetPath: Assets/SharpUI/Libs/CastleCore/LICENSE.txt
+  uploadId: 452711

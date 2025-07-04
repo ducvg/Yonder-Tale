@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: dc1af6fd0fd26463d99216e1a91a0160
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 195933
+  packageName: SharpUI GUI
+  packageVersion: 1.0
+  assetPath: Assets/SharpUI/Libs/NSubstitute/README.md
+  uploadId: 452711

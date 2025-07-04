@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 3840781da155d412a8a32efcfd11b085
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 195933
+  packageName: SharpUI GUI
+  packageVersion: 1.0
+  assetPath: Assets/SharpUI/Libs/NSubstitute/LICENSE.txt
+  uploadId: 452711
