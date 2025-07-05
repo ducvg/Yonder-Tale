@@ -13,17 +13,17 @@ using TMPro;
 [RequireComponent(typeof(TextMeshProUGUI))]
 public class CircularTMP : MonoBehaviour
 {
-    [SerializeField] private AnimationCurve growthCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
-    [SerializeField] private float animationDuration = 1f;
-    [SerializeField] private float characterDelay = 0.05f;
+    [SerializeField] private AnimationCurve growthCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);  //Controls how the "pulsing" animation behaves over time
+    [SerializeField] private float animationDuration = 1f; //Time it takes for a single pulse.
+    [SerializeField] private float characterDelay = 0.05f;  //Delay before each character starts pulsing
     private float elapsedTime;
 
     private TextMeshProUGUI m_TextComponent;
 
-    [SerializeField] private float m_radius = 10.0f;
+    [SerializeField] private float m_radius = 10.0f;  //Radius of the circular text arc.
 
     [Tooltip("The radius of the text circle arc")]
-    public float Radius
+    public float Radius  //The radius is public so you can tweak it dynamically.
     {
         get => m_radius;
         set
@@ -40,7 +40,7 @@ public class CircularTMP : MonoBehaviour
 
     private void OnEnable()
     {
-        m_TextComponent.OnPreRenderText += UpdateTextCurve;
+        m_TextComponent.OnPreRenderText += UpdateTextCurve; //curve text before rendering
         OnCurvePropertyChanged();
     }
 
@@ -49,7 +49,7 @@ public class CircularTMP : MonoBehaviour
     #if UNITY_EDITOR
         if (!Application.isPlaying) return;
     #endif
-        m_TextComponent.ForceMeshUpdate();
+        // m_TextComponent.ForceMeshUpdate();
     }
 
 
@@ -66,22 +66,26 @@ public class CircularTMP : MonoBehaviour
 
     protected void UpdateTextCurve(TMP_TextInfo textInfo)
     {
-        Vector3[] vertices;
+        Vector3[] vertices; //used to storing vertices of  at a time
         Matrix4x4 matrix;
 
         elapsedTime += Time.deltaTime;
 
         for (int i = 0; i < textInfo.characterInfo.Length; i++) {
-            if (!textInfo.characterInfo[i].isVisible)
+            if (!textInfo.characterInfo[i].isVisible) //skip invisible charactersL e.g. spaces
                 continue;
 
+            // Get the index of the vertex for the current character
             int vertexIndex = textInfo.characterInfo[i].vertexIndex;
+
+            // This is <b>bold</b> and <i>italic</i> and <color=red>red</color>
+            // each character can have its own material, so we need to get the correct one
             int materialIndex = textInfo.characterInfo[i].materialReferenceIndex;
             vertices = textInfo.meshInfo[materialIndex].vertices;
 
             Vector3 charMidBaselinePos = new Vector2(
                 (vertices[vertexIndex + 0].x + vertices[vertexIndex + 2].x) / 2,
-                textInfo.characterInfo[i].baseLine);
+                textInfo.characterInfo[i].baseLine); //use baseline incase of multiple lines
 
             for (int j = 0; j < 4; j++)
                 vertices[vertexIndex + j] -= charMidBaselinePos;

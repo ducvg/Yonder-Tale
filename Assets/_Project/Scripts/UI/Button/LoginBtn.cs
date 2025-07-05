@@ -56,17 +56,19 @@ public class LoginBtn : MonoBehaviour
             .OnComplete(() =>
             {
                 loginPanel.rectTransform.gameObject.SetActive(false);
+
+                
             });
 
         //Show the loading panel
         loadingPanel.rectTransform.gameObject.SetActive(true);
-        foreach (var child in loadingPanelGraphics)
-        {
-            child.DOFade(1, tweenTime)
-                .SetEase(Ease.InOutQuad);
-        }
-        loadingPanel.rectTransform.DOAnchorPos(loadingPanel.showPosition, 0.5f)
-            .SetEase(Ease.InOutQuad);
+                foreach (var child in loadingPanelGraphics)
+                {
+                    child.DOFade(1, tweenTime)
+                        .SetEase(Ease.InOutQuad);
+                }
+                loadingPanel.rectTransform.DOAnchorPos(loadingPanel.showPosition, 0.5f)
+                    .SetEase(Ease.InOutQuad);
 
         // Call the API
         StartCoroutine(ApiCall.PostRequest("api/Authorization/Login", loginData,
@@ -82,7 +84,7 @@ public class LoginBtn : MonoBehaviour
                 {
                     yield return new WaitForSeconds(LoginDelay);
 
-
+                    notificationText.text = response["token"].ToString();
 
                     // change scene or something idk
 
