@@ -9,7 +9,7 @@ public static class ApiCall
 {
     const string BASE_URL = "https://meobeovl.runasp.net/";
 
-    public static IEnumerator GetRequest(string uri, Action<object> onSuccess = null, Action<string> onError = null)
+    public static IEnumerator GetRequest(string uri, Action<object> onSuccess = null, Action<UnityWebRequest> onError = null)
     {
         uri = BASE_URL + uri;
         using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
@@ -32,13 +32,13 @@ public static class ApiCall
             else //fail to get request
             {
 
-                onError?.Invoke(webRequest.error);
+                onError?.Invoke(webRequest);
 
             }
         }
     }
 
-    public static IEnumerator PostRequest(string uri, object data, Action<JObject> onSuccess = null, Action<string> onError = null)
+    public static IEnumerator PostRequest(string uri, object data, Action<JObject> onSuccess = null, Action<ErrorResponse> onError = null)
     {
         uri = BASE_URL + uri;
         // Convert the data object to JSON
@@ -46,19 +46,24 @@ public static class ApiCall
 
         using (UnityWebRequest webRequest = UnityWebRequest.Post(uri, jsonData, "application/json"))
         {
-
             // Send the request and wait for a response
             yield return webRequest.SendWebRequest();
+
+            Debug.Log("Raw JSON response: " + webRequest.downloadHandler.text);
+
 
             if (webRequest.result == UnityWebRequest.Result.Success)
             {
                 // Request succeeded 200
                 JObject jsonResponse = JObject.Parse(webRequest.downloadHandler.text);
+
                 onSuccess?.Invoke(jsonResponse);
             }
             else //fail to post request
             {
-                onError?.Invoke(webRequest.error);
+                ErrorResponse errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(webRequest.downloadHandler.text);
+
+                onError?.Invoke(errorResponse);
             }
         }
     }

@@ -9,9 +9,9 @@ public class BaseCanvas : MonoBehaviour
 
     private RectTransform rectTransform;
     private Graphic[] graphics;
-    private bool isRunning = false; //track if canvas is fully open or closed
+    protected bool isTweening = false; //track if canvas is fully open or closed
 
-    void Awake()
+    protected virtual void Awake()
     {
         rectTransform = transform as RectTransform;
         graphics = GetComponentsInChildren<Graphic>(includeInactive: true);
@@ -19,8 +19,9 @@ public class BaseCanvas : MonoBehaviour
 
     public virtual void Setup()
     {
-        if (isRunning) return;
-        isRunning = true;
+        if (isTweening) return;
+        isTweening = true;
+        gameObject.SetActive(true);
 
         Open();
     }
@@ -37,12 +38,14 @@ public class BaseCanvas : MonoBehaviour
 
     protected virtual void OnOpenComplete()
     {
-        isRunning = false;
-        gameObject.SetActive(true);
+        isTweening = false;
     }
 
     public virtual void Close(float delay)
     {
+        if (isTweening) return;
+        isTweening = true;
+
         Tween.Delay(target: this, duration: delay,
             onComplete: target => target.Close()
         );
@@ -50,21 +53,42 @@ public class BaseCanvas : MonoBehaviour
 
     public virtual void Close()
     {
-        if(isRunning) return;
-        isRunning = true;
+        if (isTweening) return;
+        isTweening = true;
 
         foreach (Graphic graphic in graphics)
         {
             Tween.Alpha(graphic, endValue: 0f, tweenSetting.settings.duration);
         }
         Tween.UIAnchoredPosition3D(rectTransform, tweenSetting.WithDirection(toEndValue: true))
-        .OnComplete(this, target => target.CloseDirectly());
+        .OnComplete(this, target => target.OnCloseComplete());
     }
 
-    protected virtual void CloseDirectly()
+    protected virtual void OnCloseComplete()
     {
-        isRunning = false;
+        isTweening = false;
         gameObject.SetActive(false);
     }
 
+    [ContextMenu("Set as Show")]
+    public void EditorSetAsShow()
+    {
+        var tmp = GetComponentsInChildren<Graphic>(includeInactive: true);
+        foreach (var graphic in tmp)
+        {
+            graphic.color = graphic.color.WithAlpha(1f);
+        }
+        (gameObject.transform as RectTransform).anchoredPosition3D = tweenSetting.startValue;
+    }
+
+    [ContextMenu("Set as Hidden")]
+    public void EditorSetAsHidden()
+    {
+        var tmp = GetComponentsInChildren<Graphic>(includeInactive: true);
+        foreach (var graphic in tmp)
+        {
+            graphic.color = graphic.color.WithAlpha(0f);
+        }
+        (gameObject.transform as RectTransform).anchoredPosition3D = tweenSetting.endValue;
+    }
 }
