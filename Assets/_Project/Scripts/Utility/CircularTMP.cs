@@ -49,7 +49,7 @@ public class CircularTMP : MonoBehaviour
     #if UNITY_EDITOR
         if (!Application.isPlaying) return;
     #endif
-        // m_TextComponent.ForceMeshUpdate();
+        m_TextComponent.ForceMeshUpdate();
     }
 
 
