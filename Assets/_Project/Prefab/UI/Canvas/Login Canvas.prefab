@@ -127,12 +127,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7966cf5857c868448bb0e36e0772fd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tweenSetting:
+  moveSettings:
     startFromCurrent: 0
-    startValue: {x: 0, y: -70, z: 0}
-    endValue: {x: 0, y: -140, z: 0}
+    startValue: {x: 0, y: 0, z: 0}
+    endValue: {x: 0, y: 0, z: 0}
     settings:
-      duration: 1.5
+      duration: 1
       ease: 0
       customEase:
         serializedVersion: 2
@@ -147,9 +147,29 @@ MonoBehaviour:
       useUnscaledTime: 0
       _useFixedUpdate: 0
       _updateType: 0
+  alphaSettings:
+    startFromCurrent: 0
+    startValue: 0
+    endValue: 0
+    settings:
+      duration: 1
+      ease: 0
+      customEase:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      cycles: 1
+      cycleMode: 0
+      startDelay: 0
+      endDelay: 0
+      useUnscaledTime: 0
+      _useFixedUpdate: 0
+      _updateType: 0
+  canvasGroup: {fileID: 0}
   accountInput: {fileID: 1407917408845364546}
   passwordInput: {fileID: 4914325014528083948}
-  afterLoginDelay: 0.5
   isProcessing: 0
 --- !u!223 &5508857670175679679
 Canvas:
@@ -724,7 +744,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 968f3e0624e775d47a61e60b1f976ba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorTexture: {fileID: 2800000, guid: 5032caf3a51f5404eac87bdb4e6c73c9, type: 3}
+  hoverTexture: {fileID: 0}
+  clickTexture: {fileID: 0}
   normalAfterClick: 0
 --- !u!222 &2116743265795720070
 CanvasRenderer:
@@ -1089,7 +1110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 968f3e0624e775d47a61e60b1f976ba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorTexture: {fileID: 2800000, guid: 5032caf3a51f5404eac87bdb4e6c73c9, type: 3}
+  hoverTexture: {fileID: 0}
+  clickTexture: {fileID: 0}
   normalAfterClick: 0
 --- !u!114 &1837019613271758666
 MonoBehaviour:
@@ -1651,7 +1673,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 968f3e0624e775d47a61e60b1f976ba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorTexture: {fileID: 2800000, guid: 5032caf3a51f5404eac87bdb4e6c73c9, type: 3}
+  hoverTexture: {fileID: 0}
+  clickTexture: {fileID: 0}
   normalAfterClick: 0
 --- !u!1 &5930104774816142747
 GameObject:
@@ -2113,7 +2136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 968f3e0624e775d47a61e60b1f976ba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorTexture: {fileID: 2800000, guid: 5032caf3a51f5404eac87bdb4e6c73c9, type: 3}
+  hoverTexture: {fileID: 0}
+  clickTexture: {fileID: 0}
   normalAfterClick: 0
 --- !u!222 &419356676431785269
 CanvasRenderer:

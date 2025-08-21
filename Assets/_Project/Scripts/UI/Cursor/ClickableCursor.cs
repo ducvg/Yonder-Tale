@@ -1,12 +1,17 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ClickableCursor : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class ClickableCursor : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
-    [SerializeField] private Texture2D cursorTexture;
+    [SerializeField] private Texture2D hoverTexture, clickTexture;
     [SerializeField] private bool normalAfterClick = false;
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        Cursor.SetCursor(clickTexture, Vector2.zero, CursorMode.Auto);
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
     {
         if(normalAfterClick)
         {
@@ -16,9 +21,9 @@ public class ClickableCursor : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
+        Cursor.SetCursor(hoverTexture, Vector2.zero, CursorMode.Auto);
     }
-//
+
     public void OnPointerExit(PointerEventData eventData)
     {
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);

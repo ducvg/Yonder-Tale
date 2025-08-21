@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 3472aca7c9a90c941933f6835cdc05f4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - canvasGroup: {instanceID: 0}
+  - tickSprite: {fileID: 21300000, guid: f3249b402ec01eb4aa94b49e999177ac, type: 3}
+  - errorSprite: {fileID: 21300000, guid: e48883687c28c3e459cd9b83a3d10966, type: 3}
+  - loadingIcon: {instanceID: 0}
+  - notificationText: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

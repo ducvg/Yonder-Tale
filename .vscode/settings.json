@@ -66,5 +66,9 @@
     "explorer.fileNesting.patterns": {
         "*.sln": "*.csproj"
     },
-    "dotnet.defaultSolution": "Yonder-Tale.sln"
+    "dotnet.defaultSolution": "Yonder-Tale.sln",
+    "dotrush.roslyn.projectOrSolutionFiles": [
+        "d:\\Unity\\Yonder-Tale\\Yonder Tale.sln",
+        "d:\\Unity\\Yonder-Tale\\Yonder-Tale.sln"
+    ]
 }
